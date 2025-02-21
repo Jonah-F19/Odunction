@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform player; // Assign the player's transform in the Inspector
-    public float smoothSpeed = 5f; // Adjust for smooth movement
+    public float smoothSpeed = 6f; // Adjust for smooth movement
     public Vector3 offset; // Offset to keep the camera at a specific distance
 
     void LateUpdate()
