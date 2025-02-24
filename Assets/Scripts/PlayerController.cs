@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private int extraJump;
+    private bool hasCutout = false;
 
     void Start()
     {
@@ -41,6 +42,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             extraJump = 1;
+        }
+
+        if (collision.gameObject.CompareTag("Cutout")){
+            hasCutout = true;
         }
     }
 
