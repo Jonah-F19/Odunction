@@ -37,22 +37,31 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if touching the ground
-        if (collision.gameObject.CompareTag("Ground"))
+
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
             extraJump = 1;
         }
 
-        if (collision.gameObject.CompareTag("Cutout")){
+        if (other.gameObject.CompareTag("Cutout")){
             hasCutout = true;
+            Destroy(other.gameObject);
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D other)
     {
-        // Check if leaving the ground
-        if (collision.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
         }
