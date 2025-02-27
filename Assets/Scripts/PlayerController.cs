@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private int extraJump;
-    private bool hasCutout = false;
+    public bool hasCutout = false;
 
     void Start()
     {
