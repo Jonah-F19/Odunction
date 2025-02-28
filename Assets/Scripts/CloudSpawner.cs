@@ -17,7 +17,24 @@ public class CloudSpawner : MonoBehaviour
 
     void Start()
     {
-        SpawnClouds(); // Spawn a limited number of clouds
+        if (CanFitClouds())
+        {
+            SpawnClouds(); // Spawn a limited number of clouds
+        }
+        else
+        {
+            Debug.LogError("Cannot fit the requested number of clouds in the given area with the minimum distance.");
+        }
+    }
+
+    bool CanFitClouds()
+    {
+        float areaWidth = maxX - minX;
+        float areaHeight = maxY - minY;
+        float availableArea = areaWidth * areaHeight;
+        float requiredArea = cloudCount * (Mathf.PI * Mathf.Pow(minDistanceBetweenClouds / 2, 2));
+
+        return availableArea >= requiredArea;
     }
 
     void SpawnClouds()
@@ -25,9 +42,13 @@ public class CloudSpawner : MonoBehaviour
         if (cloudPrefab != null)
         {
             int spawnedClouds = 0;
-            while (spawnedClouds < cloudCount)
+            int maxAttempts = cloudCount * 10; // Avoid infinite loops
+            int attempts = 0;
+
+            while (spawnedClouds < cloudCount && attempts < maxAttempts)
             {
                 Vector3 spawnPosition = GetRandomPosition();
+                attempts++;
 
                 // Check if the new position is far enough from existing clouds
                 if (IsPositionValid(spawnPosition))
@@ -36,6 +57,11 @@ public class CloudSpawner : MonoBehaviour
                     cloudPositions.Add(spawnPosition);
                     spawnedClouds++;
                 }
+            }
+
+            if (spawnedClouds < cloudCount)
+            {
+                Debug.LogWarning("Could not spawn all clouds due to space constraints.");
             }
         }
         else
