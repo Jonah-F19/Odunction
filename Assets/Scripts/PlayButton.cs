@@ -14,5 +14,6 @@ public class PlayButton : MonoBehaviour
     public void LoadMainScene()
     {
         SceneManager.LoadScene("Main"); // Ensure this matches your scene name in Build Settings
+        Time.timeScale = 1f;
     }
 }

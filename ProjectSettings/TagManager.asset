@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Cutout
+  - Projectile
+  - EnemyHitbox
+  - KillZone
   layers:
   - Default
   - TransparentFX
