@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public GameObject deathScreen;  // Reference to the Death Screen Panel
     public GameObject pauseScreen;  // Reference to the Pause Screen Panel
 
+    public GameObject oKeyInDoor;
+
+    public GameObject levelCompleteScreen;
+
     private bool isPaused = false;  // Track whether the game is paused
 
     void Start()
@@ -53,7 +57,11 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // You can add collision-based logic here if needed
+        if (collision.gameObject.CompareTag("Door")){
+            if (hasCutout){
+                CompleteLevel();
+            }
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -167,5 +175,14 @@ public class PlayerController : MonoBehaviour
             pauseScreen.SetActive(false); // Hide the pause screen
         }
         isPaused = false; // Ensure the pause state is reset
+    }
+
+    void CompleteLevel(){
+        oKeyInDoor.SetActive(true);
+        hasCutout = false;
+        Time.timeScale = 0f;
+        if (levelCompleteScreen != null){
+            levelCompleteScreen.SetActive(true);
+        }
     }
 }

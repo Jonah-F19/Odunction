@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - EnemyHitbox
   - KillZone
+  - Door
   layers:
   - Default
   - TransparentFX
