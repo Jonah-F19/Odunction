@@ -62,6 +62,10 @@ public class PlayerController : MonoBehaviour
                 CompleteLevel();
             }
         }
+
+        if (collision.gameObject.CompareTag("Enemy")){
+            health -= 10;
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -102,6 +106,14 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+
+        if (other.gameObject.CompareTag("Health"))
+        {
+            if (health < 100){
+                health += 50;
+                Destroy(other.gameObject);
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -110,6 +122,14 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+
+        if (other.gameObject.CompareTag("Health"))
+        {
+            if (health < 100){
+                health += 50;
+                Destroy(other.gameObject);
+            }
         }
     }
 

@@ -10,6 +10,8 @@ TagManager:
   - EnemyHitbox
   - KillZone
   - Door
+  - Health
+  - Enemy
   layers:
   - Default
   - TransparentFX
