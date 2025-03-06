@@ -16,6 +16,9 @@ public class EnemyAI : MonoBehaviour
     public float projectileSpeed = 5f;    // Speed of the projectile
     public Transform firePoint;           // Point where projectiles spawn
 
+    [Header("Detection Settings")]
+    public float detectionRange = 5f;     // Range within which the enemy detects the player
+
     private Transform player;
     private Rigidbody2D rb;
 
@@ -90,7 +93,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (true)
         {
-            if (player != null)
+            if (player != null && Vector2.Distance(transform.position, player.position) <= detectionRange)
             {
                 openMouth.SetActive(true);
                 ShootProjectile();

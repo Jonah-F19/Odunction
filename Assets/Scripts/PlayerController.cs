@@ -197,6 +197,7 @@ public class PlayerController : MonoBehaviour
         isPaused = false; // Ensure the pause state is reset
     }
 
+
     void CompleteLevel(){
         oKeyInDoor.SetActive(true);
         hasCutout = false;
