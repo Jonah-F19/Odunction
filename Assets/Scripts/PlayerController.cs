@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
 
     private bool isPaused = false;  // Track whether the game is paused
 
+    public GameObject fedora;
+
+    public GameObject fedoraPickup;
+
+    public GameObject fedoraText;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,6 +106,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             Destroy(other.transform.parent.gameObject);
+            fedoraPickup.SetActive(true);
+            fedoraText.SetActive(true);
+
         }
 
         if (other.gameObject.CompareTag("KillZone"))
@@ -114,6 +123,17 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+
+    if (other.gameObject.CompareTag("Fedora"))
+    {
+        moveSpeed += 2;
+        jumpForce += 2;
+        Debug.Log("Fedora collected!"); // Check if this prints
+        Destroy(other.gameObject);
+        fedora.SetActive(true);
+        Debug.Log("Fedora activated!"); // Ensure this prints
+    }
+
     }
 
     void OnTriggerExit2D(Collider2D other)

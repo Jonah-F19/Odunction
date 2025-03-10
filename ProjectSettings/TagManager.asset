@@ -12,6 +12,7 @@ TagManager:
   - Door
   - Health
   - Enemy
+  - Fedora
   layers:
   - Default
   - TransparentFX
