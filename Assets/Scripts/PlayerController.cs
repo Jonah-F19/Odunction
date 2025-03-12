@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Stats/Info")]
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
     public float groundCheckRadius = 0.2f;
@@ -10,12 +11,14 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private int extraJump;
     public bool hasCutout = false;
+    [Header("UI Screens")]
     public GameObject deathScreen;  // Reference to the Death Screen Panel
     public GameObject pauseScreen;  // Reference to the Pause Screen Panel
 
-    public GameObject oKeyInDoor;
-
     public GameObject levelCompleteScreen;
+
+    [Header("Misc")]
+    public GameObject oKeyInDoor;
 
     private bool isPaused = false;  // Track whether the game is paused
 
