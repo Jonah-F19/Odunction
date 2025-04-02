@@ -4103,7 +4103,7 @@ GameObject:
   - component: {fileID: 802313862}
   m_Layer: 0
   m_Name: GrayDeathHitbox
-  m_TagString: EnemyHitbox
+  m_TagString: FedoraEnemyHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5146,8 +5146,8 @@ MonoBehaviour:
   hasCutout: 0
   deathScreen: {fileID: 304526409}
   pauseScreen: {fileID: 1530956427}
-  oKeyInDoor: {fileID: 1485124223}
   levelCompleteScreen: {fileID: 301858560}
+  oKeyInDoor: {fileID: 1485124223}
   fedora: {fileID: 1779115913}
   fedoraPickup: {fileID: 1648435739}
   fedoraText: {fileID: 1611471}

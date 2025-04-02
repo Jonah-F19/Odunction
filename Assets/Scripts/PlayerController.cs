@@ -73,13 +73,20 @@ public class PlayerController : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("Enemy")){
-            health -= 10;
+            TakeDamage(10);
+        }
+
+        if (collision.gameObject.CompareTag("Spike")){
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce-3);
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
         // You can add exit collision logic here if needed
+        if (collision.gameObject.CompareTag("Spike")){
+            TakeDamage(25);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -109,9 +116,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             Destroy(other.transform.parent.gameObject);
-            fedoraPickup.SetActive(true);
-            fedoraText.SetActive(true);
 
+        }
+        if (other.gameObject.CompareTag("FedoraEnemyHitbox")){
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Destroy(other.transform.parent.gameObject);
+            fedoraPickup.SetActive(true);
+            if (fedoraText != null){
+                fedoraText.SetActive(true);
+            }
         }
 
         if (other.gameObject.CompareTag("KillZone"))
