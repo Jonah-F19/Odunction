@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public AudioClip whatTheDirin;
+    private AudioSource audioSource;
+
     [Header("Movement Settings")]
     public float moveSpeed = 2f;          // Speed of enemy movement
     public float moveRange = 3f;          // Range of random movement
@@ -46,7 +49,12 @@ public class EnemyAI : MonoBehaviour
 
         // Start movement and shooting behaviors
         StartCoroutine(RandomMovement());
-        StartCoroutine(ShootAtPlayer());
+
+    // Start shooting coroutine with random initial delay
+        float initialDelay = Random.Range(0f, shootInterval);
+        StartCoroutine(ShootAtPlayerWithDelay(initialDelay));
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -55,6 +63,11 @@ public class EnemyAI : MonoBehaviour
     }
 
     // Handles random back-and-forth movement
+    IEnumerator ShootAtPlayerWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        yield return StartCoroutine(ShootAtPlayer());
+    }
     IEnumerator RandomMovement()
     {
         while (true)
@@ -107,6 +120,8 @@ public class EnemyAI : MonoBehaviour
     void ShootProjectile()
     {
         // Instantiate the projectile
+        audioSource.clip = whatTheDirin;
+        audioSource.Play();
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 
         // Calculate direction to the player

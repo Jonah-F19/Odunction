@@ -3118,8 +3118,11 @@ MonoBehaviour:
   hasCutout: 0
   deathScreen: {fileID: 1045450791}
   pauseScreen: {fileID: 1326066569}
-  oKeyInDoor: {fileID: 564113775}
   levelCompleteScreen: {fileID: 917509754}
+  oKeyInDoor: {fileID: 564113775}
+  fedora: {fileID: 0}
+  fedoraPickup: {fileID: 0}
+  fedoraText: {fileID: 0}
 --- !u!50 &1038415109
 Rigidbody2D:
   serializedVersion: 4
@@ -3653,6 +3656,7 @@ MonoBehaviour:
   shootInterval: 2
   projectileSpeed: 10
   firePoint: {fileID: 989789384}
+  detectionRange: 5
   openMouth: {fileID: 573022303}
 --- !u!1 &1282595597
 GameObject:
@@ -3930,7 +3934,7 @@ Transform:
   m_GameObject: {fileID: 1351252891}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.62, y: -5.17, z: 0}
+  m_LocalPosition: {x: -1.54, y: -4.81, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4699,6 +4703,7 @@ MonoBehaviour:
   offset: {x: -0.1, y: 0.5, z: 0}
   paralalx: 1
   locky: 0
+  playerController: {fileID: 0}
 --- !u!1 &1574402416
 GameObject:
   m_ObjectHideFlags: 0

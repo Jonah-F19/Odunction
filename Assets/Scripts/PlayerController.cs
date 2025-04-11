@@ -28,9 +28,20 @@ public class PlayerController : MonoBehaviour
 
     public GameObject fedoraText;
 
+    public AudioClip grayMoan;
+
+    public AudioClip odirinOuch;
+
+    public AudioClip healthSound;
+
+    public AudioClip woo;
+    private AudioSource audioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 1.5f;
+        audioSource = GetComponent<AudioSource>();
         if (pauseScreen != null)
         {
             pauseScreen.SetActive(false); // Ensure the pause screen is hidden at the start
@@ -44,7 +55,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
         // Handle jumping
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             if (isGrounded)
             {
@@ -55,6 +66,12 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 extraJump = 0;
             }
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)){
+            rb.gravityScale = 5f;
+        }else{
+            rb.gravityScale = 1.5f;
         }
 
         // Handle pause/unpause when Escape is pressed
@@ -101,6 +118,8 @@ public class PlayerController : MonoBehaviour
         // Check if the player collects a cutout
         if (other.gameObject.CompareTag("Cutout"))
         {
+            audioSource.clip = healthSound;
+            audioSource.Play();
             hasCutout = true;
             Destroy(other.gameObject);
         }
@@ -114,11 +133,15 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("EnemyHitbox"))
         {
+            audioSource.clip = grayMoan;
+            audioSource.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             Destroy(other.transform.parent.gameObject);
 
         }
         if (other.gameObject.CompareTag("FedoraEnemyHitbox")){
+            audioSource.clip = grayMoan;
+            audioSource.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             Destroy(other.transform.parent.gameObject);
             fedoraPickup.SetActive(true);
@@ -129,12 +152,16 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("KillZone"))
         {
+            audioSource.clip = odirinOuch;
+            audioSource.Play();
             Die();
         }
 
         if (other.gameObject.CompareTag("Health"))
         {
             if (health < 100){
+                audioSource.clip = healthSound;
+                audioSource.Play();
                 health += 50;
                 Destroy(other.gameObject);
             }
@@ -142,6 +169,8 @@ public class PlayerController : MonoBehaviour
 
     if (other.gameObject.CompareTag("Fedora"))
     {
+        audioSource.clip = healthSound;
+        audioSource.Play();
         moveSpeed += 2;
         jumpForce += 2;
         Debug.Log("Fedora collected!"); // Check if this prints
@@ -172,6 +201,8 @@ public class PlayerController : MonoBehaviour
     // Method to handle player taking damage
     void TakeDamage(int damage)
     {
+        audioSource.clip = odirinOuch;
+        audioSource.Play();
         health -= damage;
         Debug.Log("Player Health: " + health);
 
@@ -236,6 +267,8 @@ public class PlayerController : MonoBehaviour
 
     void CompleteLevel(){
         oKeyInDoor.SetActive(true);
+        audioSource.clip = woo;
+        audioSource.Play();
         hasCutout = false;
         Time.timeScale = 0f;
         if (levelCompleteScreen != null){
