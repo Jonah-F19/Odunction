@@ -5546,7 +5546,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: hello
 --- !u!222 &1049459288
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5569,9 +5569,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 874547634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -365, y: 358.62964}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 71, y: -40}
   m_SizeDelta: {x: 300.7338, y: 100}
   m_Pivot: {x: 0.4686952, y: 0.17259279}
 --- !u!1 &1100715721
@@ -10974,6 +10974,7 @@ GameObject:
   - component: {fileID: 1972731639}
   - component: {fileID: 1972731638}
   - component: {fileID: 1972731637}
+  - component: {fileID: 1972731642}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11114,6 +11115,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1972731642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972731636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d752d4f9ac74485894da2a6e5e176b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smokeBeepClip: {fileID: 8300000, guid: 71a99aab156f942269fbc8efb3701e31, type: 3}
+  minDelay: 10
+  maxDelay: 60
 --- !u!1 &1981372631
 GameObject:
   m_ObjectHideFlags: 0
