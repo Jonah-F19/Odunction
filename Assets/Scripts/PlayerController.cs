@@ -80,6 +80,11 @@ public class PlayerController : MonoBehaviour
             TogglePause();
         }
     }
+    
+    public void ApplySpikeKnockback()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce - 3);
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -100,10 +105,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        // You can add exit collision logic here if needed
-        if (collision.gameObject.CompareTag("Spike")){
-            TakeDamage(25);
-        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -199,7 +201,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Method to handle player taking damage
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         audioSource.clip = odirinOuch;
         audioSource.Play();
